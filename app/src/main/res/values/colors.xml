@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="texto_simple">#7C7C7C</color>
+    <color name="texto_titulo">#FFFFFF</color>
+    <color name="verde">#198754</color>
+    <color name="rojo">#DC3545</color>
+
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined" parent="">
+        <item name="colorControlActivated">#FFFFFF</item>
+    </style>
+    <style name="BotonAzul" parent="">
+        <item name="colorPrimary">#0D6EFD</item>
+    </style>
+    <style name="BotonRojo" parent="">
+        <item name="colorPrimary">#DC3545</item>
+    </style>
+    <style name="TextoSimple" parent="">
+        <item name="colorPrimary">#7C7C7C</item>
+    </style>
+</resources>

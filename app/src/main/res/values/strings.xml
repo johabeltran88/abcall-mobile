@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">VinilApp</string>
+    <string name="agregar_comentario">Agregar Comentario</string>
+    <string name="nombre_coleccionista">Nombre coleccionista</string>
+    <string name="correo_coleccionista">Correo coleccionista</string>
+    <string name="tel_fono_coleccionista">Teléfono coleccionista</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="agregar">Agregar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="detalle_art_m">Detalle Artista</string>
+    <string name="detalle_alb_m">Detalle Albúm</string>
+    <string name="agregar_lbum">Agregar Álbum</string>
+    <string name="nombre">Nombre</string>
+    <string name="imagen">Imagen</string>
+    <string name="fecha_lanzamiento">Fecha lanzamiento</string>
+    <string name="agregar_artista">Agregar Artista</string>
+    <string name="fecha_nacimiento">Fecha nacimiento</string>
+    <string name="fecha_nacimiento_2">Fecha nacimiento: </string>
+    <string name="qu_quieres_hacer_hoy">¿Qué quieres hacer hoy?</string>
+    <string name="ver_lbumes">Ver Álbumes</string>
+    <string name="listado_de_lbumes">Lista de Álbumes</string>
+    <string name="vinilapp">VinilApp</string>
+    <string name="ingresa_como">Ingresa como:</string>
+    <string name="visitante">Visitante</string>
+    <string name="coleccionista">Coleccionista</string>
+    <string name="ver_artistas">Ver Artistas</string>
+    <string name="listado_de_artistas">Lista de Artistas</string>
+    <string name="nombre_2">Nombre: </string>
+    <string name="fecha_lanzamiento_2">Fecha lanzamiento: </string>
+    <string name="g_nero_2">Género: </string>
+    <string name="g_nero_">Género</string>
+    <string name="disquera_2">Disquera: </string>
+    <string name="disquera_">Disquera</string>
+    <string name="puntuacion">Puntuación</string>
+    <string name="descripci_n_2">Descripción: </string>
+    <string name="comentarios">Comentarios</string>
+    <string name="albumes">Álbumes</string>
+    <string name="notificacion">Notificación</string>
+    <string name="error">Ha ocurrido un error, intentelo de nuevo</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="addComment">El comentario ha sido agregado al albúm</string>
+    <string name="addAlbum">El album ha sido creado exitosamente</string>
+    <string name="addArtist">El artista ha sido creado exitosamente</string>
+    <string name="error1">El campo es requerido y no debe estar vacio</string>
+    <string name="error2">El campo es de maximo de %1$d caracteres</string>
+    <string name="error3">El formato de la fecha ingresada debe ser mm/dd/aaaa</string>
+    <string name="error4">La url ingresada no es valida</string>
+    <string name="error5">Debe seleccionar un elemento de la lista</string>
+    <string name="error6">El campo debe ser un correo valido</string>
+    <array name="recordLabel">
+        <item>Disquera</item>
+        <item>Sony Music</item>
+        <item>EMI</item>
+        <item>Discos Fuentes</item>
+        <item>Elektra</item>
+        <item>Fania Records</item>
+    </array>
+    <array name="genre">
+        <item>Género</item>
+        <item>Classical</item>
+        <item>Salsa</item>
+        <item>Rock</item>
+        <item>Folk</item>
+    </array>
+    <!-- Strings used for fragments for navigation -->
+    <array name="rating">
+        <item>Puntuación</item>
+        <item>Uno</item>
+        <item>Dos</item>
+        <item>Tres</item>
+        <item>Cuatro</item>
+        <item>Cinco</item>
+    </array>
+</resources>
