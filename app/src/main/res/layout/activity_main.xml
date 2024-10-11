@@ -54,6 +54,7 @@
             app:suffixTextColor="@color/m3_textfield_stroke_color_custom">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:cursorVisible="true"
@@ -80,6 +81,7 @@
             app:suffixTextColor="@color/m3_textfield_stroke_color_custom">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:cursorVisible="true"
@@ -95,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:height="36dp"
-            android:onClick="lista"
+            android:onClick="login"
             android:text="Iniciar sesión"
             android:textColor="@color/white"
             android:textColorHighlight="#FFFFFF"
