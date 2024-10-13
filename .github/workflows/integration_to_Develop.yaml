@@ -1,0 +1,44 @@
+name: Merging of Feature Branch into Develop Branch
+on:
+  push:
+    branches:
+      - 'feature**'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  android-tests:
+    name: Android Tests
+    if: ${{ contains(github.event.head_commit.message, 'DEPLOY') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to feature branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Merge Develop into feature branch
+        uses: tukasz/direct-merge-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          source-branch: develop
+          target-branch: ${{ github.ref }}
+
+      - name: Set up JDK for Android
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Install Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 33
+          target: 'android-33'
+          build-tools: '33.0.2'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
