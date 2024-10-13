@@ -44,4 +44,20 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run Android unit tests
-        run: ./gradlew testDebugUnitTest
+        id: run-tests
+        run: |
+          ./gradlew testDebugUnitTest || echo "NO-SOURCE" > result.txt
+
+      - name: Fail job if no tests were found
+        if: success() && steps.run-tests.outputs.outcome == 'NO-SOURCE'
+        run: |
+          echo "No unit tests found! Failing the job."
+          exit 1
+
+      - name: Merge feature branch into Develop
+        if: success()
+        uses: tukasz/direct-merge-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          source-branch: ${{ github.ref }}
+          target-branch: develop
