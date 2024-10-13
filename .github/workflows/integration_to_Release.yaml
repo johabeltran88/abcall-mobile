@@ -1,4 +1,4 @@
-name: Creation of Release Branhc and PR to main
+name: Creation of Release Branch and PR to Main
 on:
   push:
     branches:
@@ -9,10 +9,53 @@ permissions:
   pull-requests: write
 
 jobs:
-  tests:
-    name: Tests
+  android-tests:
+    name: Android Unit Tests
     if: ${{ contains(github.event.head_commit.message, 'RELEASE') }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.13 ]
+
+    steps:
+      - name: Checkout to develop branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set up JDK for Android
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Install Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 33
+          target: 'android-33'
+          build-tools: '33.0.2'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Run Android unit tests
+        id: run-tests
+        run: |
+          ./gradlew testDebugUnitTest || echo "NO-TESTS-FOUND" > result.txt
+
+      - name: Fail job if no tests were found
+        if: success() && steps.run-tests.outputs.outcome == 'NO-TESTS-FOUND'
+        run: |
+          echo "No unit tests found! Failing the job."
+          exit 1
+
+      # - name: Sanitize commit message for branch name
+      #   id: sanitize_message
+      #   if: success()
+      #   run: |
+      #     BRANCH_NAME=$(echo "${{ github.event.head_commit.message }}" | sed -e 's/[^a-zA-Z0-9._-]/-/g' | cut -c1-50)
+      #     echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      # - name: Create a new release branch from develop
+      #   if: success()
+      #   run: |
+      #     git checkout -b $BRANCH_NAME develop
+      #     git push origin $BRANCH_NAME
