@@ -1,0 +1,18 @@
+name: Creation of Release Branhc and PR to main
+on:
+  push:
+    branches:
+      - 'develop'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  tests:
+    name: Tests
+    if: ${{ contains(github.event.head_commit.message, 'RELEASE') }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ 3.13 ]
