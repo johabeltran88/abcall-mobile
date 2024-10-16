@@ -37,7 +37,7 @@ fun postRequest(
 class GatewayUtil {
 
     companion object {
-        const val BASE_URL = ""
+        const val BASE_URL = "http://abcall-load-balancer-1563043008.us-east-1.elb.amazonaws.com"
     }
 
 }
