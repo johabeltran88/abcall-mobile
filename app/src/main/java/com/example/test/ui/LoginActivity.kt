@@ -91,17 +91,21 @@ class LoginActivity : AppCompatActivity() {
         viewModel.error.observe(this) {
             it.apply {
                 if (it) {
-                    Toast.makeText(
-                        binding.root.context,
-                        R.string.error4,
-                        Toast.LENGTH_LONG
-                    ).show()
+                    val builder = AlertDialog.Builder(binding.root.context)
+                    builder.setMessage(R.string.error4)
+                    builder.setPositiveButton(R.string.ok) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    val dialog = builder.create()
+                    dialog.show()
                 } else {
-                    Toast.makeText(
-                        binding.root.context,
-                        R.string.bienvenido,
-                        Toast.LENGTH_LONG
-                    ).show()
+                    val builder = AlertDialog.Builder(binding.root.context)
+                    builder.setMessage(R.string.bienvenido)
+                    builder.setPositiveButton(R.string.ok) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    val dialog = builder.create()
+                    dialog.show()
                 }
             }
         }
