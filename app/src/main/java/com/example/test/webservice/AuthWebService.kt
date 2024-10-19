@@ -9,7 +9,7 @@ import org.json.JSONObject
 
 class AuthWebService {
     companion object {
-        const val RESOURCE = "/consumer"
+        const val RESOURCE = "/auth/consumers/token"
     }
 
     fun create(

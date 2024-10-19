@@ -3,6 +3,11 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("kotlin-kapt")
+    id("jacoco")
+}
+
+jacoco {
+    toolVersion = "0.8.8"
 }
 
 android {
@@ -10,7 +15,6 @@ android {
     compileSdk = 34
 
     defaultConfig {
-
         applicationId = "com.example.test"
         minSdk = 26
         targetSdk = 34
@@ -28,17 +32,85 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            enableAndroidTestCoverage = true
+            enableUnitTestCoverage = true
+        }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         viewBinding = true
         dataBinding = true
+    }
+
+
+}
+
+tasks.register("jacocoTestReport", JacocoReport::class.java) {
+    dependsOn("connectedDebugAndroidTest")
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        html.outputLocation.set(file("${buildDir}/reports/jacoco"))
+    }
+
+    val fileTree = fileTree("${buildDir}/intermediates/javac/debug/") {
+        exclude(
+            "**/R.class",
+            "**/R$*.class",
+            "**/BuildConfig.*",
+            "**/Manifest*.*",
+            "**/*Test*.*",
+            "android/**/*.*"
+        )
+    }
+
+    classDirectories.setFrom(fileTree)
+    sourceDirectories.setFrom(files("src/main/java"))
+
+    executionData.setFrom(fileTree("${buildDir}/outputs/code_coverage/debugAndroidTest/connected/**/*.ec"))
+
+    doLast {
+        println("Reporte HTML generado en: ${reports.html.outputLocation.get().asFile.absolutePath}")
+        println("Reporte XML generado en: ${reports.xml.outputLocation.get().asFile.absolutePath}")
+    }
+}
+
+tasks.register("convertEcToHtml", JacocoReport::class.java) {
+    reports {
+        xml.required.set(false)
+        html.required.set(true)
+        html.outputLocation.set(file("${buildDir}/reports/jacoco"))
+    }
+
+    val fileTree = fileTree("${buildDir}/intermediates/javac/debug/") {
+        exclude(
+            "**/R.class",
+            "**/R$*.class",
+            "**/BuildConfig.*",
+            "**/Manifest*.*",
+            "**/*Test*.*",
+            "android/**/*.*"
+        )
+    }
+
+    classDirectories.setFrom(fileTree)
+    sourceDirectories.setFrom(files("src/main/java"))
+
+    executionData.setFrom(fileTree("${buildDir}/outputs/code_coverage/debugAndroidTest/connected/Pixel_XL_API_34(AVD) - 14/coverage.ec"))
+
+    doLast {
+        println("Reporte HTML generado en: ${reports.html.outputLocation.get().asFile.absolutePath}")
     }
 }
 
@@ -58,7 +130,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
@@ -67,5 +139,4 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.code.gson:gson:2.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-
 }
