@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ABCall</string>
+    <string name="error1">El campo es requerido y no debe estar vacio</string>
+    <string name="error2">El campo es requerido y no debe estar vacio</string>
+    <string name="error3">El campo es de maximo de %1$d caracteres</string>
+    <string name="error4">Credenciales invalidas</string>
+    <string name="ok">Ok</string>
+    <string name="bienvenido">¡Bienvenido!</string>
+    <string name="correo_electronico">Correo electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="o_si_lo_prefieres">o si lo prefieres</string>
+    <string name="registrate">Registrate</string>
+    <string name="recuperar_contrasena">Recuperar contraseña</string>
+</resources>

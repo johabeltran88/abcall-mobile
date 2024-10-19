@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ABCall</string>
+    <string name="error1">The field is required and must not be empty</string>
+    <string name="error2">The field must be a valid email</string>
+    <string name="error3">The field is a maximum of %1$d characters</string>
+    <string name="error4">Invalid credentials</string>
+    <string name="ok">Ok</string>
+    <string name="bienvenido">Welcome!</string>
+    <string name="correo_electronico">Email</string>
+    <string name="contrasena">Password</string>
+    <string name="iniciar_sesion">Log in</string>
+    <string name="o_si_lo_prefieres">or if you prefer</string>
+    <string name="registrate">Sign up</string>
+    <string name="recuperar_contrasena">Recover password</string>
+</resources>
