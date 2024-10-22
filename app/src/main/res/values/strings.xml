@@ -12,4 +12,12 @@
     <string name="o_si_lo_prefieres">o si lo prefieres</string>
     <string name="registrate">Registrate</string>
     <string name="recuperar_contrasena">Recuperar contraseña</string>
+    <string name="historial_incidente">Historial de PQRs</string>
+    <string name="crear_incidente">Crear PQR</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="asunto">Asunto</string>
+    <string name="empresas">Seleccionar empresa</string>
+    <string name="descripcion">Descripción</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

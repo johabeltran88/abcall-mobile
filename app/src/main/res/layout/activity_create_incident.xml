@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:screenOrientation="landscape"
+    tools:context=".ui.CreateIncidentActivity">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.test.viewmodel.CreateIncidentViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#212529">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:gravity="center"
+                android:text="@string/crear_incidente"
+                android:textColor="@color/texto_titulo"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="@color/m3_textfield_stroke_color_custom"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                app:boxStrokeColor="@color/m3_textfield_stroke_color_custom"
+                app:counterTextColor="@color/m3_textfield_stroke_color_custom"
+                app:endIconTint="@color/white"
+                app:helperTextTextColor="@color/m3_textfield_stroke_color_custom"
+                app:hintTextColor="@color/m3_textfield_stroke_color_custom"
+                app:placeholderTextColor="@color/m3_textfield_stroke_color_custom"
+                app:prefixTextColor="@color/m3_textfield_stroke_color_custom"
+                app:startIconTint="@color/white"
+                app:suffixTextColor="@color/m3_textfield_stroke_color_custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/asunto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:hint="@string/asunto"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#0B5ED7"
+                    android:textColorLink="#FFFFFF"
+                    android:text="@={viewModel.subject}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="16dp"
+                android:text="@={viewModel.errorSubject}"
+                android:textAlignment="center"
+                android:textColor="#D32F2F"
+                android:textSize="14sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/m3_textfield_stroke_color_custom"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                app:boxStrokeColor="@color/m3_textfield_stroke_color_custom"
+                app:endIconTint="@color/white"
+                app:startIconTint="@color/white"
+                app:hintTextColor="@color/m3_textfield_stroke_color_custom"
+                app:endIconMode="dropdown_menu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/dropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/empresas"
+                    android:textColor="#FFFFFF"
+                    android:inputType="none"
+                    android:textColorHighlight="#0B5ED7"
+                    android:textColorLink="#FFFFFF"
+                    android:dropDownVerticalOffset="10dp"
+                    android:dropDownHeight="wrap_content" /> />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="16dp"
+                android:text="@={viewModel.errorCompany}"
+                android:textAlignment="center"
+                android:textColor="#D32F2F"
+                android:textSize="14sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="@color/m3_textfield_stroke_color_custom"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                app:boxStrokeColor="@color/m3_textfield_stroke_color_custom"
+                app:counterTextColor="@color/m3_textfield_stroke_color_custom"
+                app:endIconTint="@color/white"
+                app:helperTextTextColor="@color/m3_textfield_stroke_color_custom"
+                app:hintTextColor="@color/m3_textfield_stroke_color_custom"
+                app:placeholderTextColor="@color/m3_textfield_stroke_color_custom"
+                app:prefixTextColor="@color/m3_textfield_stroke_color_custom"
+                app:startIconTint="@color/white"
+                app:suffixTextColor="@color/m3_textfield_stroke_color_custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/descripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:minHeight="200dp"
+                    android:gravity="top|start"
+                    android:hint="@string/descripcion"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#0B5ED7"
+                    android:textColorLink="#FFFFFF"
+                    android:text="@={viewModel.description}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="16dp"
+                android:text="@={viewModel.errorDescription}"
+                android:textAlignment="center"
+                android:textColor="#D32F2F"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:height="36dp"
+                    android:text="@string/guardar"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorLink="#0D6EFD"
+                    android:theme="@style/BotonAzul" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:height="36dp"
+                    android:text="@string/cancelar"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:theme="@style/BotonAzul" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
