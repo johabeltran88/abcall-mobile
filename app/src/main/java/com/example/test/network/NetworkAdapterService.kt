@@ -7,12 +7,14 @@ import com.example.test.model.Consumer
 import com.example.test.model.Incident
 import com.example.test.model.Token
 import com.example.test.webservice.AuthWebService
+import com.example.test.webservice.CreateWebService
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class NetworkAdapterService constructor(context: Context) {
     private val authWebService = AuthWebService()
+    private val createWebService = CreateWebService()
 
     companion object {
         private var instance: NetworkAdapterService? = null
@@ -38,7 +40,7 @@ class NetworkAdapterService constructor(context: Context) {
     }
 
     suspend fun create(incident: Incident) = suspendCoroutine { continuation ->
-        requestQueue.add(authWebService.createPqr(incident, { response ->
+        requestQueue.add(createWebService.createPqr(incident, { response ->
             continuation.resume(response.getString("token"))
         }, {
             continuation.resumeWithException(it)
