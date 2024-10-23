@@ -4,6 +4,7 @@ import android.content.Context
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 import com.example.test.model.Consumer
+import com.example.test.model.Incident
 import com.example.test.model.Token
 import com.example.test.webservice.AuthWebService
 import kotlin.coroutines.resume
@@ -31,6 +32,14 @@ class NetworkAdapterService constructor(context: Context) {
                     token = response.getString("token")
                 )
             )
+        }, {
+            continuation.resumeWithException(it)
+        }))
+    }
+
+    suspend fun create(incident: Incident) = suspendCoroutine { continuation ->
+        requestQueue.add(authWebService.createPqr(incident, { response ->
+            continuation.resume(response.getString("token"))
         }, {
             continuation.resumeWithException(it)
         }))

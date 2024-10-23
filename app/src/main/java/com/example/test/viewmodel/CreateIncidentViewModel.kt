@@ -7,11 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.test.model.Incident
+import com.example.test.repository.CreateRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CreateIncidentViewModel(application: Application) : AndroidViewModel(application) {
+    private val createRepository = CreateRepository(application)
 
     var subject = MutableLiveData<String>()
     var errorSubject = MutableLiveData<String>()
@@ -36,7 +38,7 @@ class CreateIncidentViewModel(application: Application) : AndroidViewModel(appli
             viewModelScope.launch(Dispatchers.Default) {
                 try {
                     withContext(Dispatchers.IO) {
-                        //val token = authRepository.login(consumer)
+                        val token = createRepository.create(incident)
                         error.postValue(false)
                     }
                 } catch (exception: Exception) {
