@@ -4,6 +4,7 @@
     <string name="error2">The field must be a valid email</string>
     <string name="error3">The field is a maximum of %1$d characters</string>
     <string name="error4">Invalid credentials</string>
+    <string name="error5">The field is a minimum %1$d characters and maximum %2$d characters</string>
     <string name="ok">Ok</string>
     <string name="bienvenido">Welcome!</string>
     <string name="correo_electronico">Email</string>
@@ -20,4 +21,8 @@
     <string name="descripcion">Description</string>
     <string name="guardar">Save</string>
     <string name="cancelar">Cancel</string>
+    <string name="notificacion">Notification</string>
+    <string name="error_general">An error has occurred, please try again</string>
+    <string name="incidente_creado">The incident has been created successfully</string>
+    <string name="error_dropdown">Please select an option</string>
 </resources>

@@ -4,6 +4,7 @@
     <string name="error2">El campo es requerido y no debe estar vacio</string>
     <string name="error3">El campo es de maximo de %1$d caracteres</string>
     <string name="error4">Credenciales invalidas</string>
+    <string name="error5">El campo es de minimo %1$d caracteres y máximo %2$d caracteres</string>
     <string name="ok">Ok</string>
     <string name="bienvenido">¡Bienvenido!</string>
     <string name="correo_electronico">Correo electrónico</string>
@@ -20,4 +21,8 @@
     <string name="descripcion">Descripción</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="notificacion">Notificación</string>
+    <string name="error_general">Ha ocurrido un error, intentelo de nuevo</string>
+    <string name="incidente_creado">La PQR ha sido creada exitosamente</string>
+    <string name="error_dropdown">Por favor, selecciona una opción</string>
 </resources>

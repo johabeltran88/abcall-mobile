@@ -94,7 +94,7 @@
                 app:endIconMode="dropdown_menu">
 
                 <AutoCompleteTextView
-                    android:id="@+id/dropdown"
+                    android:id="@+id/companies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/empresas"
@@ -164,6 +164,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
@@ -176,6 +177,7 @@
                     android:theme="@style/BotonAzul" />
 
                 <Button
+                    android:id="@+id/btnCancel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"

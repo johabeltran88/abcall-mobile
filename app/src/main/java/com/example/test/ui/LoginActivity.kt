@@ -1,7 +1,7 @@
 package com.example.test.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -103,6 +103,10 @@ class LoginActivity : AppCompatActivity() {
                     builder.setMessage(R.string.bienvenido)
                     builder.setPositiveButton(R.string.ok) { dialog, _ ->
                         dialog.dismiss()
+                        val intent =
+                            Intent(binding.root.context, OptionsActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                     val dialog = builder.create()
                     dialog.show()
