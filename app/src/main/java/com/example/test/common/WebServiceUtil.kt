@@ -11,12 +11,19 @@ import org.json.JSONObject
  */
 fun getRequest(
     resource: String,
+    token: String?,
     responseListener: Response.Listener<String>,
     errorListener: Response.ErrorListener
 ): StringRequest {
-    return StringRequest(
+    return object: StringRequest(
         Request.Method.GET, GatewayUtil.BASE_URL + resource, responseListener, errorListener
-    )
+    ) {
+        override fun getHeaders(): Map<String, String> {
+            val headers = HashMap<String, String>()
+            headers["Authorization"] = "Bearer $token" // Añadimos el token al header
+            return headers
+        }
+    }
 }
 
 /**

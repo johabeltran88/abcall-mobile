@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.test.common.saveToSession
 import com.example.test.model.Consumer
 import com.example.test.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +35,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 try {
                     withContext(Dispatchers.IO) {
                         val token = authRepository.login(consumer)
+                        saveToSession(getApplication(), "Token", token.token)
                         error.postValue(false)
                     }
                 } catch (exception: Exception) {

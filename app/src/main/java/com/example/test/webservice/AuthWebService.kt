@@ -11,7 +11,6 @@ import org.json.JSONObject
 class AuthWebService {
     companion object {
         const val RESOURCE = "/auth/consumers/token"
-        const val RESOURCECREATE = ""
     }
 
     fun create(

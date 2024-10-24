@@ -28,10 +28,6 @@ class CreateIncidentActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val items = listOf("Bancolombia", "Constructora Bolivar", "Claro")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, items)
-        binding.companies.setAdapter(adapter)
-
         viewModel.subject.observe(this) {
             it.apply {
                 viewModel.errorSubject.postValue(
@@ -59,12 +55,12 @@ class CreateIncidentActivity : AppCompatActivity() {
 
         binding.companies.setOnItemClickListener { parent, view, position, id ->
             val selectedOption = parent.getItemAtPosition(position) as String
-            viewModel.company.postValue(selectedOption)
+            viewModel.selectedCompany.postValue(selectedOption)
         }
-        viewModel.company.observe(this){
+        viewModel.selectedCompany.observe(this){
             it.apply {
                 viewModel.errorCompany.postValue(
-                    validateFieldString(viewModel.company.value, 0, 1000, binding.root.context)
+                    validateFieldString(viewModel.selectedCompany.value, 0, 1000, binding.root.context)
                 )
             }
         }
@@ -81,7 +77,7 @@ class CreateIncidentActivity : AppCompatActivity() {
         binding.companies.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 viewModel.errorCompany.postValue(
-                    validateFieldString(viewModel.company.value, 0, 1000, binding.root.context)
+                    validateFieldString(viewModel.selectedCompany.value, 0, 1000, binding.root.context)
                 )
             }
         }
@@ -116,7 +112,7 @@ class CreateIncidentActivity : AppCompatActivity() {
                 validateFieldString(viewModel.subject.value, 1, 250, binding.root.context)
             )
             viewModel.errorCompany.postValue(
-                validateFieldString(viewModel.company.value, 0, 1000, binding.root.context)
+                validateFieldString(viewModel.selectedCompany.value, 0, 1000, binding.root.context)
             )
             viewModel.errorDescription.postValue(
                 validateFieldString(viewModel.description.value, 100, 1000, binding.root.context)

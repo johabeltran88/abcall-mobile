@@ -7,9 +7,9 @@ import com.example.test.model.Incident
 import com.google.gson.Gson
 import org.json.JSONObject
 
-class CreateWebService {
+class IncidentWebService {
     companion object {
-        const val RESOURCECREATE = ""
+        const val RESOURCE = "/companies/company_id/consumers/consumer_id/pccs"
     }
 
     fun createPqr(
@@ -17,7 +17,7 @@ class CreateWebService {
         responseListener: Response.Listener<JSONObject>,
         errorListener: Response.ErrorListener
     ): JsonObjectRequest {
-        return postRequest(AuthWebService.RESOURCECREATE, toJSONObject(incident), responseListener, errorListener)
+        return postRequest(AuthWebService.RESOURCE, toJSONObject(incident), responseListener, errorListener)
     }
 
     private fun toJSONObject(incident: Incident): JSONObject {
