@@ -5,6 +5,7 @@
     <string name="error3">The field is a maximum of %1$d characters</string>
     <string name="error4">Invalid credentials</string>
     <string name="error5">The field is a minimum %1$d characters and maximum %2$d characters</string>
+    <string name="error6">Error crating PCCs</string>
     <string name="ok">Ok</string>
     <string name="bienvenido">Welcome!</string>
     <string name="correo_electronico">Email</string>
@@ -13,8 +14,8 @@
     <string name="o_si_lo_prefieres">or if you prefer</string>
     <string name="registrate">Sign up</string>
     <string name="recuperar_contrasena">Recover password</string>
-    <string name="historial_incidente">PQR History</string>
-    <string name="crear_incidente">Create PQR</string>
+    <string name="historial_incidente">PCC History</string>
+    <string name="crear_incidente">Create PCC</string>
     <string name="cerrar_sesion">Sign out</string>
     <string name="asunto">subject</string>
     <string name="empresas">Select company</string>
@@ -23,6 +24,6 @@
     <string name="cancelar">Cancel</string>
     <string name="notificacion">Notification</string>
     <string name="error_general">An error has occurred, please try again</string>
-    <string name="incidente_creado">The incident has been created successfully</string>
+    <string name="incidente_creado">The PCC has been created successfully</string>
     <string name="error_dropdown">Please select an option</string>
 </resources>

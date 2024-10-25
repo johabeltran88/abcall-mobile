@@ -5,6 +5,7 @@
     <string name="error3">El campo es de maximo de %1$d caracteres</string>
     <string name="error4">Credenciales invalidas</string>
     <string name="error5">El campo es de minimo %1$d caracteres y máximo %2$d caracteres</string>
+    <string name="error6">Error creando el PQRs</string>
     <string name="ok">Ok</string>
     <string name="bienvenido">¡Bienvenido!</string>
     <string name="correo_electronico">Correo electrónico</string>

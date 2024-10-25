@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.test.R
+import com.example.test.common.SessionManager
 import com.example.test.common.validateEmail
 import com.example.test.common.validateValue
 import com.example.test.databinding.ActivityLoginBinding
@@ -15,14 +16,17 @@ class LoginActivity : AppCompatActivity() {
     private var _binding: ActivityLoginBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: LoginViewModel
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        sessionManager = SessionManager(this)
+
         viewModel = ViewModelProvider(
-            this, LoginViewModel.Factory(this.application)
+            this, LoginViewModel.Factory(this.application, sessionManager)
         )[LoginViewModel::class.java]
 
         binding.viewModel = viewModel
@@ -88,6 +92,12 @@ class LoginActivity : AppCompatActivity() {
             viewModel.login()
         }
 
+        viewModel.token.observe(this) {
+            it.apply {
+                sessionManager.addValue(sessionManager.keyToken, it)
+            }
+        }
+
         viewModel.error.observe(this) {
             it.apply {
                 if (it) {
@@ -103,9 +113,7 @@ class LoginActivity : AppCompatActivity() {
                     builder.setMessage(R.string.bienvenido)
                     builder.setPositiveButton(R.string.ok) { dialog, _ ->
                         dialog.dismiss()
-                        val intent =
-                            Intent(binding.root.context, OptionsActivity::class.java)
-                        startActivity(intent)
+                        startActivity(Intent(binding.root.context, OptionsActivity::class.java))
                         finish()
                     }
                     val dialog = builder.create()
