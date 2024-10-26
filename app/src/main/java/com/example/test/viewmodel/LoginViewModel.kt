@@ -6,14 +6,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.test.model.Consumer
+import com.example.test.common.SessionManager
+import com.example.test.model.Login
 import com.example.test.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
+class LoginViewModel(
+    application: Application,
+    sessionManager: SessionManager
+) : AndroidViewModel(application) {
     private val authRepository = AuthRepository(application)
+
+    var token = MutableLiveData<String>()
 
     var email = MutableLiveData<String>()
     var errorEmail = MutableLiveData<String>()
@@ -29,11 +35,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         if (isValidEmail.value == true
             && isValidPassword.value == true
         ) {
-            val consumer = Consumer(email.value, password.value)
+            val login = Login(email.value, password.value)
             viewModelScope.launch(Dispatchers.Default) {
                 try {
                     withContext(Dispatchers.IO) {
-                        val token = authRepository.login(consumer)
+                        token.postValue(authRepository.login(login))
                         error.postValue(false)
                     }
                 } catch (exception: Exception) {
@@ -43,11 +49,14 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
+    class Factory(
+        private val application: Application,
+        private val sessionManager: SessionManager
+    ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return LoginViewModel(application) as T
+                return LoginViewModel(application, sessionManager) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

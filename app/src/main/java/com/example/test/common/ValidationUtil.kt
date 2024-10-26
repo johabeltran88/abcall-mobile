@@ -21,3 +21,11 @@ fun validateEmail(field: String?, context: Context): String {
         return ""
     }
 }
+
+fun validateFieldString(field: String?, minLength: Int, maxLength: Int, context: Context): String {
+    if (field.isNullOrBlank())
+        return context.getString(R.string.error1)
+    if (field.length < minLength || field.length > maxLength)
+        return context.getString(R.string.error5, minLength, maxLength)
+    return ""
+}
