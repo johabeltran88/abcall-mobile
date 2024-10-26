@@ -4,24 +4,27 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
+import com.example.test.model.Login
+import com.google.gson.Gson
 import org.json.JSONObject
+import java.util.Objects
 
-/**
- * Esta función se utiliza para realizar peticiones de tipo GET a un recurso especifico
- */
 fun getRequest(
     resource: String,
+    token: String,
     responseListener: Response.Listener<String>,
     errorListener: Response.ErrorListener
 ): StringRequest {
-    return StringRequest(
-        Request.Method.GET, GatewayUtil.BASE_URL + resource, responseListener, errorListener
-    )
+    return object : StringRequest(
+        Method.GET, GatewayUtil.BASE_URL + resource, responseListener, errorListener
+    ) {
+        override fun getHeaders(): Map<String, String> {
+            val headers = HashMap<String, String>()
+            headers["Authorization"] = "Bearer $token"
+            return headers
+        }
+    }
 }
-
-/**
- * Esta función se utiliza para realizar peticiones de tipo GET a un recurso especifico
- */
 
 fun postRequest(
     resource: String,
@@ -32,6 +35,24 @@ fun postRequest(
     return JsonObjectRequest(
         Request.Method.POST, GatewayUtil.BASE_URL + resource, body, responseListener, errorListener
     )
+}
+
+fun postRequest(
+    resource: String,
+    token: String,
+    body: JSONObject,
+    responseListener: Response.Listener<JSONObject>,
+    errorListener: Response.ErrorListener
+): JsonObjectRequest {
+    return object : JsonObjectRequest(
+        Request.Method.POST, GatewayUtil.BASE_URL + resource, body, responseListener, errorListener
+    ) {
+        override fun getHeaders(): Map<String, String> {
+            val headers = HashMap<String, String>()
+            headers["Authorization"] = "Bearer $token"
+            return headers
+        }
+    }
 }
 
 class GatewayUtil {
