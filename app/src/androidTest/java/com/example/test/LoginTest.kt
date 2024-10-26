@@ -26,7 +26,7 @@ class LoginTest {
 
     @Test
     fun loginSuccess(){
-        onView(withId(R.id.subject))
+        onView(withId(R.id.email))
             .perform(scrollTo(), typeText("proyecto_de_grado@gmail.com"))
 
         onView(withId(R.id.password))
@@ -40,7 +40,7 @@ class LoginTest {
 
     @Test
     fun loginError(){
-        onView(withId(R.id.subject))
+        onView(withId(R.id.email))
             .perform(scrollTo(), typeText("proyecto_de_grado123@gmail.com"))
 
         onView(withId(R.id.password))
@@ -54,7 +54,7 @@ class LoginTest {
 
     @Test
     fun loginEmptyEmail(){
-        onView(withId(R.id.subject))
+        onView(withId(R.id.email))
             .perform(scrollTo(), typeText(""))
 
         onView(withId(R.id.password))
@@ -68,7 +68,7 @@ class LoginTest {
 
     @Test
     fun loginEmptyPassword(){
-        onView(withId(R.id.subject))
+        onView(withId(R.id.email))
             .perform(scrollTo(), typeText("proyecto_de_grado123@gmail.com"))
 
         onView(withId(R.id.password))

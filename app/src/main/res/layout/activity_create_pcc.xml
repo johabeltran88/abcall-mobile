@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:text="@string/crear_incidente"
                 android:textColor="@color/texto_titulo"
-                android:textSize="40dp" />
+                android:textSize="40sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Empresa"
+                    android:hint="@string/empresa"
                     android:textColorHint="@color/m3_textfield_stroke_color_custom"
                     android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                     app:boxStrokeColor="@color/m3_textfield_stroke_color_custom"
@@ -121,7 +121,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:cursorVisible="true"
-                        android:hint="Asunto"
+                        android:hint="@string/asunto"
                         android:text="@={viewModel.subject}"
                         android:textColor="#FFFFFF"
                         android:textColorHighlight="#0B5ED7"
@@ -160,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:cursorVisible="true"
                         android:gravity="top"
-                        android:hint="Descripción"
+                        android:hint="@string/descripcion"
                         android:inputType="textMultiLine"
                         android:lines="8"
                         android:scrollbars="vertical"
@@ -188,7 +188,7 @@
                     android:layout_marginBottom="16dp"
                     android:height="36dp"
                     android:onClick="createPcc"
-                    android:text="Guardar"
+                    android:text="@string/guardar"
                     android:textColor="@color/white"
                     android:textColorHighlight="#FFFFFF"
                     android:textColorLink="#FFFFFF"

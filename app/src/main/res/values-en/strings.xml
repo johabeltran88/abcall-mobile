@@ -19,6 +19,7 @@
     <string name="cerrar_sesion">Sign out</string>
     <string name="asunto">subject</string>
     <string name="empresas">Select company</string>
+    <string name="empresa">Company</string>
     <string name="descripcion">Description</string>
     <string name="guardar">Save</string>
     <string name="cancelar">Cancel</string>
