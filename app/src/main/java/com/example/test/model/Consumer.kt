@@ -7,4 +7,5 @@ data class Consumer (
     val contactNumber: String?,
     val address: String?,
     val companies: List<Company>,
+    val pccs: List<Pcc>,
 )
