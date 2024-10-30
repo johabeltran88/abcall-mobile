@@ -1,6 +1,5 @@
 package com.example.test.ui
 
-import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -23,8 +22,16 @@ class ListPccActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityListPccBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        val upArrow: Drawable? = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
+        upArrow?.setColorFilter(
+            ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_ATOP
+        )
+        supportActionBar?.setHomeAsUpIndicator(upArrow)
+
         sessionManager = SessionManager(this)
 
         // Initialize the adapter with an empty list
@@ -44,10 +51,6 @@ class ListPccActivity : AppCompatActivity() {
             // When album data changes, update the adapter's dataset
             pccAdapter.updatePcc(pcc)
         }
-
-        val upArrow: Drawable? = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
-        upArrow?.setColorFilter(resources.getColor(R.color.texto_simple), PorterDuff.Mode.SRC_ATOP)
-        supportActionBar?.setHomeAsUpIndicator(upArrow)
 
         pccAdapter.setOnItemClickListener {
             viewModel.pccId.value = viewModel.pcc.value?.get(it)?.id
