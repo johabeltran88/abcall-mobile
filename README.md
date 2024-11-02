@@ -9,4 +9,4 @@
 
 # APK
 
-El archivo abcall.apk se encuentra la raiz del proyecto para ser instalado en dispositivos android directamente. 
+El archivo abcall.apk se encuentra la raiz del proyecto para ser instalado en dispositivos android directamente.
