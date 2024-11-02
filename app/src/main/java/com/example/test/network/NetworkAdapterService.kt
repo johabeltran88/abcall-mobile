@@ -51,6 +51,18 @@ class NetworkAdapterService constructor(context: Context) {
                 )
                 companies.add(company)
             }
+            val pccsJsonArray = JSONObject(response).getJSONArray("pccs")
+            val pccs = mutableListOf<Pcc>()
+            for (i in 0 until pccsJsonArray.length()) {
+                val pccJson = pccsJsonArray.getJSONObject(i)
+                val pcc = Pcc(
+                    id = pccJson.getString("id"),
+                    subject = pccJson.getString("subject"),
+                    description = pccJson.getString("description"),
+                    status = pccJson.getString("status"),
+                )
+                pccs.add(pcc)
+            }
             continuation.resume(
                 Consumer(
                     id = JSONObject(response).getString("id"),
@@ -58,7 +70,8 @@ class NetworkAdapterService constructor(context: Context) {
                     identificationNumber = JSONObject(response).getString("identification_number"),
                     contactNumber = JSONObject(response).getString("contact_number"),
                     address = JSONObject(response).getString("address"),
-                    companies = companies
+                    companies = companies,
+                    pccs = pccs
                 )
             )
         }, {

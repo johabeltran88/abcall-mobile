@@ -14,6 +14,10 @@ class OptionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_options)
 
+        findViewById<Button>(R.id.btnSubmit).setOnClickListener {
+            startActivity(Intent(this, ListPccActivity::class.java))
+        }
+
         findViewById<Button>(R.id.btnSubmit2).setOnClickListener {
             startActivity(Intent(this, CreatePccActivity::class.java))
         }

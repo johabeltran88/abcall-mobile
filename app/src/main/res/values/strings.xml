@@ -27,4 +27,5 @@
     <string name="error_general">Ha ocurrido un error, intentelo de nuevo</string>
     <string name="incidente_creado">La PQR ha sido creada exitosamente</string>
     <string name="error_dropdown">Por favor, selecciona una opción</string>
+    <string name="consultar">Consultar</string>
 </resources>
