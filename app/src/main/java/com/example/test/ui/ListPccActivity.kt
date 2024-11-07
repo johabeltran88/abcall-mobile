@@ -1,5 +1,6 @@
 package com.example.test.ui
 
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -52,8 +53,18 @@ class ListPccActivity : AppCompatActivity() {
             pccAdapter.updatePcc(pcc)
         }
 
-        pccAdapter.setOnItemClickListener {
-            viewModel.pccId.value = viewModel.pcc.value?.get(it)?.id
+        pccAdapter.setOnItemClickListener { position ->
+            // Obtén el pccId del ViewModel
+            val selectedPccId = viewModel.pcc.value?.get(position)?.id
+
+            // Crear un Intent para navegar a la actividad de detalle
+            val intent = Intent(this, DetailPccActivity::class.java)
+
+            // Pasa el pccId como un extra en el Intent
+            intent.putExtra("pccId", selectedPccId)
+
+            // Inicia la actividad de detalle
+            startActivity(intent)
         }
 
         viewModel.fetchAllPcc(sessionManager.getValue(sessionManager.keyToken) ?: "")
