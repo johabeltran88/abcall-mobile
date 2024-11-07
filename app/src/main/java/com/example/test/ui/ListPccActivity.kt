@@ -56,13 +56,6 @@ class ListPccActivity : AppCompatActivity() {
             viewModel.pccId.value = viewModel.pcc.value?.get(it)?.id
         }
 
-        /*viewModel.pccId.observe(this) {
-            val intent = Intent(this, AlbumDetailActivity::class.java)
-            intent.putExtra("albumId", it)
-            startActivity(intent)
-        }*/
-
-        // Fetch the albums
         viewModel.fetchAllPcc(sessionManager.getValue(sessionManager.keyToken) ?: "")
     }
 }
