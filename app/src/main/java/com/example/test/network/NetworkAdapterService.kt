@@ -55,11 +55,19 @@ class NetworkAdapterService constructor(context: Context) {
             val pccs = mutableListOf<Pcc>()
             for (i in 0 until pccsJsonArray.length()) {
                 val pccJson = pccsJsonArray.getJSONObject(i)
+
+                val companyJson = pccJson.getJSONObject("company")
+                val company = Company(
+                    id = companyJson.getString("id"),
+                    name = companyJson.getString("name")
+                )
+
                 val pcc = Pcc(
                     id = pccJson.getString("id"),
                     subject = pccJson.getString("subject"),
                     description = pccJson.getString("description"),
                     status = pccJson.getString("status"),
+                    company = company
                 )
                 pccs.add(pcc)
             }

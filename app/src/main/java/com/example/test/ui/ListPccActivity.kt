@@ -1,5 +1,6 @@
 package com.example.test.ui
 
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -52,17 +53,13 @@ class ListPccActivity : AppCompatActivity() {
             pccAdapter.updatePcc(pcc)
         }
 
-        pccAdapter.setOnItemClickListener {
-            viewModel.pccId.value = viewModel.pcc.value?.get(it)?.id
+        pccAdapter.setOnItemSubmitClickListener { position ->
+            val selectedPccId = viewModel.pcc.value?.get(position)?.id
+            val intent = Intent(this, DetailPccActivity::class.java)
+            intent.putExtra("pccId", selectedPccId)
+            startActivity(intent)
         }
 
-        /*viewModel.pccId.observe(this) {
-            val intent = Intent(this, AlbumDetailActivity::class.java)
-            intent.putExtra("albumId", it)
-            startActivity(intent)
-        }*/
-
-        // Fetch the albums
         viewModel.fetchAllPcc(sessionManager.getValue(sessionManager.keyToken) ?: "")
     }
 }
