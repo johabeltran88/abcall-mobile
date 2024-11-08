@@ -28,4 +28,15 @@ class PccRepository(private val application: Application) {
             return emptyList<Pcc>()
         }
     }
+
+    suspend fun get(): Pcc{
+        return try {
+            Pcc(
+                subject = "",
+                description = ""
+            )
+        } catch (e: Exception) {
+            Pcc(subject = "", description = "")
+        }
+    }
 }

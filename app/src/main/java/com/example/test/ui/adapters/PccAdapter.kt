@@ -31,9 +31,24 @@ class PccAdapter(var listPcc: List<Pcc>) : RecyclerView.Adapter<PccAdapter.PccVi
         }
         holder.idTextView.text = pcc.id ?: "Unknown"
         holder.nameTextView.text = pcc.subject ?: "Unknown"
+
+        holder.itemView.findViewById<View>(R.id.btnSubmit).setOnClickListener {
+            // Llamar al listener para manejar el clic en el botón
+            onItemSubmitClick(position)
+        }
     }
 
+    private fun onItemSubmitClick(position: Int) {
+        onItemSubmitClickListener?.invoke(position)
+    }
+
+    private var onItemSubmitClickListener: ((Int) -> Unit)? = null
+
     private var onItemClickListener: ((Int) -> Unit)? = null
+
+    fun setOnItemSubmitClickListener(listener: (Int) -> Unit) {
+        onItemSubmitClickListener = listener
+    }
 
     private fun onItemClick(position: Int) {
         onItemClickListener?.invoke(position)
