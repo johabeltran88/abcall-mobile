@@ -8,6 +8,7 @@ import com.example.test.model.Login
 import com.google.gson.Gson
 import org.json.JSONObject
 import java.util.Objects
+import java.util.Locale
 
 fun getRequest(
     resource: String,
@@ -19,8 +20,10 @@ fun getRequest(
         Method.GET, GatewayUtil.BASE_URL + resource, responseListener, errorListener
     ) {
         override fun getHeaders(): Map<String, String> {
+            val language = Locale.getDefault().language
             val headers = HashMap<String, String>()
             headers["Authorization"] = "Bearer $token"
+            headers["Language"] = language
             return headers
         }
     }
@@ -48,8 +51,10 @@ fun postRequest(
         Request.Method.POST, GatewayUtil.BASE_URL + resource, body, responseListener, errorListener
     ) {
         override fun getHeaders(): Map<String, String> {
+            val language = Locale.getDefault().language
             val headers = HashMap<String, String>()
             headers["Authorization"] = "Bearer $token"
+            headers["Language"] = language
             return headers
         }
     }
