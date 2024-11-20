@@ -29,4 +29,5 @@
     <string name="error_dropdown">Please select an option</string>
     <string name="consultar">Consult</string>
     <string name="ver_notificaciones">See notifications</string>
+    <string name="notificaciones">Notifications</string>
 </resources>
