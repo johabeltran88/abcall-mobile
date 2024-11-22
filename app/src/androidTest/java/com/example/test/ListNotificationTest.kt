@@ -39,7 +39,7 @@ class ListNotificationTest {
     @Test
     fun ListnotificationCreatingPqrSuccess() {
         val subject = Faker().name().fullName()
-        val description = Faker().lorem().paragraph(2)
+        val description = Faker().lorem().paragraph(3)
 
         Espresso.onView(ViewMatchers.withId(R.id.email))
             .perform(ViewActions.scrollTo(), ViewActions.typeText("proyecto_de_grado1@gmail.com"))
