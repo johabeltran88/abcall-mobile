@@ -6,9 +6,11 @@ import com.android.volley.toolbox.Volley
 import com.example.test.model.Company
 import com.example.test.model.Consumer
 import com.example.test.model.Login
+import com.example.test.model.Notification
 import com.example.test.model.Pcc
 import com.example.test.webservice.AuthWebService
 import com.example.test.webservice.ConsumerWebService
+import com.example.test.webservice.NotificationWebService
 import com.example.test.webservice.PccWebService
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -19,6 +21,7 @@ class NetworkAdapterService constructor(context: Context) {
     private val authWebService = AuthWebService()
     private val consumerWebService = ConsumerWebService()
     private val pccWebService = PccWebService()
+    private val notificationWebService = NotificationWebService()
 
     companion object {
         private var instance: NetworkAdapterService? = null
@@ -102,4 +105,31 @@ class NetworkAdapterService constructor(context: Context) {
                 continuation.resumeWithException(it)
             }))
         }
+
+    suspend fun getNotificationByPcc(token: String, pccId: String): Pcc = suspendCoroutine { continuation ->
+        requestQueue.add(notificationWebService.getByPcc(token, pccId, { response ->
+            val notificationJsonArray = JSONObject(response).getJSONArray("notifications")
+            val notifications = mutableListOf<Notification>()
+            for (i in 0 until notificationJsonArray.length()) {
+                val notificationJson = notificationJsonArray.getJSONObject(i)
+                val notification = Notification(
+                    date = notificationJson.getString("create_at"),
+                    status = notificationJson.getString("status"),
+                    reason = notificationJson.getString("reason"),
+                )
+                notifications.add(notification)
+            }
+            continuation.resume(
+                Pcc(
+                    id = JSONObject(response).getString("id"),
+                    subject = JSONObject(response).getString("subject"),
+                    description = JSONObject(response).getString("description"),
+                    status = JSONObject(response).getString("status"),
+                    notification = notifications
+                )
+            )
+        }, {
+            continuation.resumeWithException(it)
+        }))
+    }
 }
