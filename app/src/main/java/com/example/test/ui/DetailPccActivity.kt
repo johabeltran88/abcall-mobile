@@ -1,5 +1,6 @@
 package com.example.test.ui
 
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -63,5 +64,11 @@ class DetailPccActivity : AppCompatActivity() {
         }
 
         viewModel.fetchAllPcc(sessionManager.getValue(sessionManager.keyToken) ?: "")
+
+        binding.btnSubmit.setOnClickListener {
+            val intent = Intent(this, ListNotificationActivity::class.java)
+            intent.putExtra("pccId", pccId)
+            startActivity(intent)
+        }
     }
 }
