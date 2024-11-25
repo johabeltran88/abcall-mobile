@@ -19,8 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
+            android:layout_gravity="top"
+            android:gravity="top"
             android:orientation="vertical"
             android:padding="16dp"
             android:paddingStart="16dp"
@@ -44,26 +44,14 @@
                 app:titleTextColor="#FEFEFE" />
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/subject"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="50dp"
                 android:gravity="center"
                 android:textColor="@color/texto_titulo"
                 android:textSize="40dp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="left"
-                android:text="@string/asunto"
-                app:boxStrokeColor="@color/m3_textfield_stroke_color_custom"
-                app:helperTextTextColor="@color/m3_textfield_stroke_color_custom"
-                app:hintTextColor="@color/m3_textfield_stroke_color_custom"
-                app:placeholderTextColor="@color/m3_textfield_stroke_color_custom"
-                app:prefixTextColor="@color/m3_textfield_stroke_color_custom"
-                app:suffixTextColor="@color/m3_textfield_stroke_color_custom" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -81,29 +69,47 @@
                 app:suffixTextColor="@color/m3_textfield_stroke_color_custom">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/subject"
+                    android:id="@+id/id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:cursorVisible="false"
                     android:focusable="false"
+                    android:hint="@string/radicado"
+                    android:text="@={viewModel.id}"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#0B5ED7"
-                    android:textColorLink="#FFFFFF"
-                    android:text="@={viewModel.subject}"
-                    android:layout_marginBottom="16dp"/>
+                    android:textColorLink="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="left"
-                android:text="@string/empresa"
+                android:textColorHint="@color/m3_textfield_stroke_color_custom"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 app:boxStrokeColor="@color/m3_textfield_stroke_color_custom"
+                app:counterTextColor="@color/m3_textfield_stroke_color_custom"
+                app:endIconTint="@color/white"
                 app:helperTextTextColor="@color/m3_textfield_stroke_color_custom"
                 app:hintTextColor="@color/m3_textfield_stroke_color_custom"
                 app:placeholderTextColor="@color/m3_textfield_stroke_color_custom"
                 app:prefixTextColor="@color/m3_textfield_stroke_color_custom"
-                app:suffixTextColor="@color/m3_textfield_stroke_color_custom" />
+                app:startIconTint="@color/white"
+                app:suffixTextColor="@color/m3_textfield_stroke_color_custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:hint="@string/estado"
+                    android:text="@={viewModel.status}"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#0B5ED7"
+                    android:textColorLink="#FFFFFF" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -124,26 +130,15 @@
                     android:id="@+id/company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:cursorVisible="false"
                     android:focusable="false"
+                    android:hint="@string/empresa"
+                    android:text="@={viewModel.company}"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#0B5ED7"
-                    android:textColorLink="#FFFFFF"
-                    android:text="@={viewModel.company}"
-                    android:layout_marginBottom="16dp" />
+                    android:textColorLink="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="left"
-                android:text="@string/descripcion"
-                app:boxStrokeColor="@color/m3_textfield_stroke_color_custom"
-                app:helperTextTextColor="@color/m3_textfield_stroke_color_custom"
-                app:hintTextColor="@color/m3_textfield_stroke_color_custom"
-                app:placeholderTextColor="@color/m3_textfield_stroke_color_custom"
-                app:prefixTextColor="@color/m3_textfield_stroke_color_custom"
-                app:suffixTextColor="@color/m3_textfield_stroke_color_custom" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -164,17 +159,18 @@
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:gravity="top"
+                    android:hint="@string/descripcion"
                     android:inputType="textMultiLine"
                     android:lines="8"
                     android:scrollbars="vertical"
                     android:text="@={viewModel.description}"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#0B5ED7"
-                    android:textColorLink="#FFFFFF"
-                    android:layout_marginBottom="16dp" />
+                    android:textColorLink="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

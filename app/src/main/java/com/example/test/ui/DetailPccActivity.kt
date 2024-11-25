@@ -19,8 +19,6 @@ class DetailPccActivity : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val pccId = intent.getStringExtra("pccId") ?: "Default Value"
-
         super.onCreate(savedInstanceState)
         binding = ActivityDetailPccBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,8 +31,8 @@ class DetailPccActivity : AppCompatActivity() {
             ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_ATOP
         )
         supportActionBar?.setHomeAsUpIndicator(upArrow)
-
         sessionManager = SessionManager(this)
+        val pccId = sessionManager.getValue(sessionManager.keyIdPcc).orEmpty()
 
         val viewModel = ViewModelProvider(
             this, DetailPccViewModel.Factory(this.application, pccId)
@@ -45,9 +43,12 @@ class DetailPccActivity : AppCompatActivity() {
 
         viewModel.pcc.observe(this) { pcc ->
             pcc?.let {
-                binding.tvTitle.text = pcc.subject ?: "No Subject Available"
-                binding.subject.text = Editable.Factory.getInstance().newEditable(
-                    binding.subject.text.toString().plus(it.subject)
+                binding.subject.text = pcc.subject
+                binding.id.text = Editable.Factory.getInstance().newEditable(
+                    binding.status.text.toString().plus(it.id)
+                )
+                binding.status.text = Editable.Factory.getInstance().newEditable(
+                    binding.status.text.toString().plus(it.status)
                 )
                 binding.company.text = Editable.Factory.getInstance().newEditable(
                     binding.company.text.toString().plus(it.company?.name ?: "Unknown Company")
@@ -58,6 +59,8 @@ class DetailPccActivity : AppCompatActivity() {
             } ?: run {
                 // Maneja el caso cuando pcc es null, por ejemplo, mostrando un mensaje o manejando el error
                 binding.subject.text = Editable.Factory.getInstance().newEditable("No data")
+                binding.id.text = Editable.Factory.getInstance().newEditable("No data")
+                binding.status.text = Editable.Factory.getInstance().newEditable("No data")
                 binding.company.text = Editable.Factory.getInstance().newEditable("No data")
                 binding.description.text = Editable.Factory.getInstance().newEditable("No data")
             }
@@ -67,7 +70,6 @@ class DetailPccActivity : AppCompatActivity() {
 
         binding.btnSubmit.setOnClickListener {
             val intent = Intent(this, ListNotificationActivity::class.java)
-            intent.putExtra("pccId", pccId)
             startActivity(intent)
         }
     }
