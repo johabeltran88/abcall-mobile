@@ -30,4 +30,9 @@
     <string name="consultar">Consult</string>
     <string name="ver_notificaciones">See notifications</string>
     <string name="notificaciones">Notifications</string>
+    <string name="estado">Status</string>
+    <string name="historial_de_pqrs">PCC History</string>
+    <string name="crear_pqr">Create PCC</string>
+    <string name="cerrar_sesi_n">Log out</string>
+    <string name="radicado">Tracking number</string>
 </resources>

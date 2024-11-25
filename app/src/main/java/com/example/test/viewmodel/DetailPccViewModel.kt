@@ -14,8 +14,9 @@ import kotlinx.coroutines.withContext
 
 class DetailPccViewModel(application: Application, private val pccId: String) : AndroidViewModel(application) {
     private val pccRepository = PccRepository(application)
-
     val subject = MutableLiveData<String>()
+    val id = MutableLiveData<String>()
+    val status = MutableLiveData<String>()
     val company = MutableLiveData<String>()
     val description = MutableLiveData<String>()
     val pcc = MutableLiveData<Pcc?>()

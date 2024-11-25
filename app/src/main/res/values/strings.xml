@@ -30,4 +30,9 @@
     <string name="consultar">Consultar</string>
     <string name="ver_notificaciones">Ver notificaciones</string>
     <string name="notificaciones">Notificaciones</string>
+    <string name="estado">Estado</string>
+    <string name="historial_de_pqrs">Historial de PQRs</string>
+    <string name="crear_pqr">Crear PQR</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
+    <string name="radicado">Número de radicado</string>
 </resources>
