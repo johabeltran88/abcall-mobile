@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 class SessionManager(context: Context) {
     private val name = "ABCall-Session"
     val keyToken = "token"
+    val keyIdPcc = "idPcc"
 
     private val sharedPref: SharedPreferences =
         context.getSharedPreferences(name, Context.MODE_PRIVATE)

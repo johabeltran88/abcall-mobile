@@ -21,5 +21,9 @@ class OptionsActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnSubmit2).setOnClickListener {
             startActivity(Intent(this, CreatePccActivity::class.java))
         }
+
+        findViewById<Button>(R.id.btnSubmit3).setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
     }
 }
