@@ -55,8 +55,10 @@ class ListPccActivity : AppCompatActivity() {
 
         pccAdapter.setOnItemSubmitClickListener { position ->
             val selectedPccId = viewModel.pcc.value?.get(position)?.id
+            if (selectedPccId != null) {
+                sessionManager.addValue(sessionManager.keyIdPcc, selectedPccId)
+            }
             val intent = Intent(this, DetailPccActivity::class.java)
-            intent.putExtra("pccId", selectedPccId)
             startActivity(intent)
         }
 

@@ -22,7 +22,6 @@ class ListNotificationActivity : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val pccId = intent.getStringExtra("pccId") ?: "Default Value"
         super.onCreate(savedInstanceState)
         binding = ActivityListNotificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -37,7 +36,7 @@ class ListNotificationActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(upArrow)
 
         sessionManager = SessionManager(this)
-
+        val pccId = sessionManager.getValue(sessionManager.keyIdPcc).orEmpty()
         // Initialize the adapter with an empty list
         notificationAdapter = NotificationAdapter(emptyList()) // Initialize with an empty list
 
